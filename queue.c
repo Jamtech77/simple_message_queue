@@ -1,11 +1,13 @@
-
 #include "queue.h"
+#include <stdlib.h>
+#include <string.h>
 
 
-uint32_t create_message_queue(message_queue_t *queue, size_t length,
+uint32_t create_message_queue(message_queue_t *queue,
+                              size_t length,
                               size_t msg_size)
 {
-    *queue = (message_queue_t *)calloc(1, sizeof(queue_t));
+    *queue = (message_queue_t) calloc(1, sizeof(queue_t));
     (*queue)->item_num = length;
     (*queue)->msg_size = msg_size;
     (*queue)->item = NULL;
@@ -13,7 +15,8 @@ uint32_t create_message_queue(message_queue_t *queue, size_t length,
     return 0;
 }
 
-uint32_t put_message_queue(message_queue_t *queue, void *msg,
+uint32_t put_message_queue(message_queue_t *queue,
+                           void *msg,
                            uint32_t timeout_ms)
 {
     queue_item_t *new_queue_item = calloc(1, sizeof(queue_item_t));
@@ -26,7 +29,8 @@ uint32_t put_message_queue(message_queue_t *queue, void *msg,
     return 0;
 }
 
-uint32_t get_message_queue(message_queue_t *queue, void *msg,
+uint32_t get_message_queue(message_queue_t *queue,
+                           void *msg,
                            uint32_t timeout_ms)
 {
     queue_item_t *cur, *prev;
